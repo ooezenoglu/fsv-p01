@@ -37,3 +37,7 @@ buildNumber.properties
 # MacOS
 
 .DS_Store
+
+# Tests
+
+.jqwik-database

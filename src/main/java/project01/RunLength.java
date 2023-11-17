@@ -3,6 +3,8 @@ package project01;
 import java.util.ArrayList;
 import java.util.List;
 
+import net.jqwik.api.Assume;
+
 public class RunLength {
     public static <T> List<Run<T>> encode(List<T> input) {
         // Note: you may assume without checking that input contains no null elements.
@@ -12,6 +14,8 @@ public class RunLength {
         List<Run<T>> result = new ArrayList<>();
         
         // TODO: implement this method
+
+        Assume.that(input.size() > 0);
 
         int counter = 1;
 

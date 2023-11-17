@@ -31,6 +31,12 @@ public class RunLengthTests {
     void canDecode(@ForAll List<String> input) {
         // TODO: check that encoding the input and then decoding the resulting runs
         //       gives back a list that is equal to the original input
+
+        List<String> output = RunLength.decode(RunLength.encode(input));
+
+        for(int i = 0; i < input.size(); i++) {
+            Assertions.assertEquals(input.get(i), output.get(i));
+        }
     }
 
     @Property
