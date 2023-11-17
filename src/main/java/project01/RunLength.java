@@ -51,6 +51,12 @@ public class RunLength {
     public static Integer sum(List<Run<Integer>> runs) {
         // TODO: implement this method (you may peek)
 
-        return 0;
+        int result = 0;
+
+        for(int i = 0; i < runs.size(); i++) {
+            result += (runs.get(i).count * runs.get(i).elem);
+        }
+
+        return result;
     }
 }

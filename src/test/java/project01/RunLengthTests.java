@@ -23,6 +23,14 @@ public class RunLengthTests {
         Assertions.assertEquals(expected, RunLength.encode(input));
     }
 
+    @Test
+    void testSum() {
+        List<Integer> input = List.of(4,3,3);
+        List<Run<Integer>> runs = RunLength.encode(input);
+
+        Assertions.assertEquals(10, RunLength.sum(runs));
+    }
+
     public static Integer sum(List<Integer> elems) {
         return elems.stream().reduce(0, Integer::sum);
     }
@@ -43,5 +51,9 @@ public class RunLengthTests {
     void optimizedSum(@ForAll List<Integer> input) {
         // TODO: check that the optimized sum method of RunLength computes on the encoding
         //       the same result as the reference implementation (method sum above) on the given input
+        
+        List<Run<Integer>> runs = RunLength.encode(input);
+
+        Assertions.assertEquals(sum(input), RunLength.sum(runs));
     }
 }
