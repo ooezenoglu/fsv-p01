@@ -13,6 +13,20 @@ public class RunLength {
         
         // TODO: implement this method
 
+        int counter = 1;
+
+        for(int i = 0; i < input.size()-1; i++) {
+            if (input.get(i).equals(input.get(i+1))) {
+                counter++;
+            } else {
+                result.add(new Run<T>(counter, input.get(i)));
+                counter = 1;
+            }
+        }
+
+        // add last run of the input
+        result.add(new Run<T>(counter, input.get(input.size()-1)));
+
         return result;
     }
 
@@ -20,6 +34,12 @@ public class RunLength {
         List<T> result = new ArrayList<>();
 
         // TODO: implement this method
+
+        for(int i = 0; i < runs.size(); i++) {
+            for(int j = 0; j < runs.get(i).count(); j++) {
+                result.add(runs.get(i).elem);
+            }
+        }
 
         return result;
     }
