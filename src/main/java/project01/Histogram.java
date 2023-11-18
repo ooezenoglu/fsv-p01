@@ -10,9 +10,15 @@ public class Histogram {
     public Histogram(List<Integer> data) {
         // TODO: initialize attributes
 
+        min = data.stream().min(Integer::compare).get();
+        max = data.stream().max(Integer::compare).get();
+        frequency = new int[max-min+1];
+
         for (int value : data) {
             // TODO: update frequencies here
             // Hint: look at method count below
+            
+            frequency[value - min]++;
         }
     }
 
