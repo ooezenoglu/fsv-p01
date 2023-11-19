@@ -5,6 +5,7 @@ import java.util.List;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import net.jqwik.api.Assume;
 import net.jqwik.api.ForAll;
 import net.jqwik.api.Property;
 import net.jqwik.api.constraints.IntRange;
@@ -50,12 +51,12 @@ public class HistogramTests {
     }
 
     @Property // TODO: specify jqwik annotations for the parameters, note we have conveniently marked with ??? where to insert code
-    void histogramDoesNotCrash(/* ??? */ @ForAll @NotEmpty List</* ??? */ @IntRange(min = -10000, max = 10000) Integer> data) {
+    void histogramDoesNotCrash(@ForAll @NotEmpty List<@IntRange(min = -30000, max = 30000) Integer> data) {
         new Histogram(data);
     }
 
     @Property // TODO: specify jqwik annotations for the parameters
-    void histogramCount(@ForAll @NotEmpty List<@IntRange(min = -10000, max = 10000) Integer> data, @ForAll int value) {
+    void histogramCount(@ForAll @NotEmpty List<@IntRange(min = -30000, max = 30000) Integer> data, @ForAll int value) {
         // TODO: check method count of class Histogram against reference implementation countOccurrences
         
         Histogram histogram = new Histogram(data);
@@ -64,9 +65,11 @@ public class HistogramTests {
     }
 
     @Property // TODO: specify jqwik annotations for the parameters
-    void histogramRange(@ForAll @NotEmpty List<@IntRange(min = -10000, max = 10000) Integer> data, @ForAll int value) {
+    void histogramRange(@ForAll @NotEmpty List<@IntRange(min = -30000, max = 30000) Integer> data, @ForAll int value) {
         // TODO: check that if countOccurrences(value) > 0 then
         //       value is between min and max of the corresponding histogram
+
+        // Assume.that(data.contains(value));
 
         if(countOccurrences(value, data) > 0) {
             Histogram histogram = new Histogram(data);
